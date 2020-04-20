@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BluSenseWorker.BusinessLogic;
 using Microsoft.Extensions.Configuration;
 
-namespace BluSenseConsole
+namespace BluSenseWorker
 {
     public class Worker
     {
@@ -27,12 +27,12 @@ namespace BluSenseConsole
                 parser.Parsing();
 
                 var repFileLogic = new RepFileBusinessLogic(_configuration);
-                // repFileLogic.Save(parser.RepFiles);
+                repFileLogic.Save(parser.RepFiles);
 
                 var bluboxLogic = new BluBoxBussinessLogic(_configuration);
-                // bluboxLogic.Save(name, parser.RepFiles.LastOrDefault());
+                bluboxLogic.Save(name, parser.RepFiles.LastOrDefault());
 
-                Console.WriteLine($"[Finished] Read and save file {name} at {DateTime.Now}.");
+                Console.WriteLine($"[Finished] Saved {name} at {DateTime.Now}.");
             }
             catch (FileNotFoundException)
             {

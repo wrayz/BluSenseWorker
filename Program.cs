@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace BluSenseWorker
 {
@@ -6,7 +7,18 @@ namespace BluSenseWorker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Execute(args);
+        }
+
+        private static void Execute(params string[] names)
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                                           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                           .Build();
+                                           
+            var worker = new Worker(configuration);
+            foreach (var name in names)
+                worker.Execute(name);
         }
     }
 }
