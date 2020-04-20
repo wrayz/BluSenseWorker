@@ -25,7 +25,6 @@ namespace BluSenseWorker.Models
         }
         public DateTime? GetDateTime()
         {
-            // DateTime.TryParse("",DateTimeStyles.)
             var format = "yyyy-MM-dd HH:mm:ss";
             var cultureInfo = new CultureInfo("en-US");
             var dateString = $"{this.Date} {this.Time}";

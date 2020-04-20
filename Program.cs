@@ -15,7 +15,7 @@ namespace BluSenseWorker
             IConfiguration configuration = new ConfigurationBuilder()
                                            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                                            .Build();
-                                           
+
             var worker = new Worker(configuration);
             foreach (var name in names)
                 worker.Execute(name);

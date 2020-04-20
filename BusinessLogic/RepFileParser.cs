@@ -25,16 +25,16 @@ namespace BluSenseWorker.BusinessLogic
                 .ForEach(item => _data.Add(new RepFile
                 {
                     Model = "D6.0",
-                        Date = item.Get("Date").TrimEnd(),
-                        Time = item.Get("Time").TrimEnd(),
-                        TestItem = item.Get("Test Item"),
-                        Result = item.Get("Result"),
-                        SN = item.Get("SN").TrimEnd(),
-                        SWVersion = item.Get("SW Version"),
-                        REP = item.Get("REP"),
-                        LOG = item.Get("LOG"),
-                        IMG = item.Get("IMG"),
-                        Use = item.Get("Use"),
+                    Date = item.Get("Date").TrimEnd(),
+                    Time = item.Get("Time").TrimEnd(),
+                    TestItem = item.Get("Test Item"),
+                    Result = item.Get("Result"),
+                    SN = item.Get("SN").TrimEnd(),
+                    SWVersion = item.Get("SW Version"),
+                    REP = item.Get("REP"),
+                    LOG = item.Get("LOG"),
+                    IMG = item.Get("IMG"),
+                    Use = item.Get("Use"),
                 }));
 
             GetList();

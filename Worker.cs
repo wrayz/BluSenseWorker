@@ -20,27 +20,33 @@ namespace BluSenseWorker
             var path = GetFilePath(name);
             try
             {
-                Console.WriteLine($"[Starting] Reading {path} at {DateTime.Now}");
+                Console.WriteLine($"[Worker Starting] Reading {path} at {DateTime.Now}");
 
                 var reader = new RepFileReader(path);
                 var parser = new RepFileParser(reader);
                 parser.Parsing();
 
+                Console.WriteLine($"[Worker DB] Saving RepFiles at {DateTime.Now}");
                 var repFileLogic = new RepFileBusinessLogic(_configuration);
                 repFileLogic.Save(parser.RepFiles);
 
+                Console.WriteLine($"[Worker DB] Saving BluBox at {DateTime.Now}");
                 var bluboxLogic = new BluBoxBussinessLogic(_configuration);
                 bluboxLogic.Save(name, parser.RepFiles.LastOrDefault());
 
-                Console.WriteLine($"[Finished] Saved {name} at {DateTime.Now}.");
+                Console.WriteLine($"[Worder Finished] Done at {DateTime.Now}.");
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine($"[Warning] {path} is not exited.");
+                Console.WriteLine($"[Worker Warning] {path} is not exited.");
+            }
+            catch (IOException)
+            {
+                Console.WriteLine($"[Worker Warning] {path} is being used by another process.");
             }
             catch (System.Exception e)
             {
-                Console.WriteLine(e.ToString());
+                Console.WriteLine($"[Worker Error] {e.ToString()}");
             }
         }
 

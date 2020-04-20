@@ -10,8 +10,8 @@ namespace BluSenseWorker.DataAccess
 
         public void InsertList(IEnumerable<RepFile> data)
         {
-            var sql = "INSERT INTO dbo.RepFiles (Model ,SN ,LogDate ,LogTime ,TestItem ,Result ,SWVersion ,REPFile ,LOGFile ,IMGFile ,UseStatus) VALUES " +
-                "(@Model ,@SN ,@Date ,@Time ,@TestItem ,@Result ,@SWVersion ,@REP ,@LOG ,@IMG ,@Use)";
+            var sql = "INSERT INTO dbo.RepFiles (Model ,SN ,LogDate ,LogTime ,TestItem ,Result ,SWVersion ,REPFile ,LOGFile ,IMGFile ,UseStatus, LogDateTime) VALUES " +
+                "(@Model ,@SN ,@Date ,@Time ,@TestItem ,@Result ,@SWVersion ,@REP ,@LOG ,@IMG ,@Use, @LogDateTime)";
             SaveListByDapper(data, sql);
         }
 
