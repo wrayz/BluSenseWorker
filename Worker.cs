@@ -30,7 +30,7 @@ namespace BluSenseWorker
                 var repFileLogic = new RepFileBusinessLogic(_configuration);
                 repFileLogic.Save(parser.RepFiles);
 
-                Console.WriteLine($"[Worker DB] Saving BluBox at {DateTime.Now}");
+                // Console.WriteLine($"[Worker DB] Saving BluBox at {DateTime.Now}");
                 var bluboxLogic = new BluBoxBussinessLogic(_configuration);
                 bluboxLogic.Save(name, parser.RepFiles.LastOrDefault());
 
